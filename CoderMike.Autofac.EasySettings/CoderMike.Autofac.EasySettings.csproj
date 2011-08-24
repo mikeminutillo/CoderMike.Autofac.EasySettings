@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EasySettingsModule.cs" />
+    <Compile Include="ISettingsReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleSettingsReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
