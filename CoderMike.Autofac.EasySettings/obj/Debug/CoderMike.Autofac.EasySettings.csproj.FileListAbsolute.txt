@@ -1,0 +1,8 @@
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings\bin\Debug\CoderMike.Autofac.EasySettings.dll
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings\bin\Debug\CoderMike.Autofac.EasySettings.pdb
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings\bin\Debug\Autofac.Configuration.dll
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings\bin\Debug\Autofac.dll
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings\bin\Debug\Autofac.xml
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings\obj\Debug\ResolveAssemblyReference.cache
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings\obj\Debug\CoderMike.Autofac.EasySettings.dll
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings\obj\Debug\CoderMike.Autofac.EasySettings.pdb

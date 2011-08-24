@@ -1,0 +1,9 @@
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings.Tests\bin\Debug\CoderMike.Autofac.EasySettings.Tests.dll
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings.Tests\bin\Debug\CoderMike.Autofac.EasySettings.Tests.pdb
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings.Tests\bin\Debug\CoderMike.Autofac.EasySettings.dll
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings.Tests\bin\Debug\Autofac.dll
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings.Tests\bin\Debug\CoderMike.Autofac.EasySettings.pdb
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings.Tests\bin\Debug\Autofac.xml
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings.Tests\obj\Debug\ResolveAssemblyReference.cache
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings.Tests\obj\Debug\CoderMike.Autofac.EasySettings.Tests.dll
+c:\dev\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings.Tests\obj\Debug\CoderMike.Autofac.EasySettings.Tests.pdb
