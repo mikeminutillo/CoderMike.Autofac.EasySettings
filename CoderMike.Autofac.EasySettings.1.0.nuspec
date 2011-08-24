@@ -5,7 +5,7 @@
     <version>1.0</version>
     <title>CoderMike.Autofac.EasySettings</title>
     <authors>CoderMike</authors>
-    <owners />
+    <owners>Mike Minutillo</owners>
     <projectUrl>http://codermike.com/convention-config-for-autofac</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Constructing settings classes that get read out of AppSettings on demand</description>
@@ -14,5 +14,4 @@
       <dependency id="Autofac" version="2.5" />
     </dependencies>
   </metadata>
-  <files />
 </package>
