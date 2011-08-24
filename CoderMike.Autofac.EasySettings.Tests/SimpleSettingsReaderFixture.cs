@@ -108,6 +108,24 @@ namespace CoderMike.Autofac.EasySettings.Tests
             Assert.AreEqual("Mike", mySettings.Name);
         }
 
+        [TestMethod]
+        public void CanSetPrivateProperties()
+        {
+            var settingsSource = new NameValueCollection();
+            settingsSource["Foo:Bar"] = "Baz";
+            var reader = new SimpleSettingsReader(settingsSource);
+            var settings = reader.Read<FooSettings>();
+            Assert.AreEqual("Baz", settings.Bar);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void AttemptToSetTheUnsettableResultsInAnException()
+        {
+            var settingsSource = new NameValueCollection();
+            settingsSource["Test:Unsettable"] = "Bang";
+            var reader = new SimpleSettingsReader(settingsSource);
+            var settings = reader.Read<TestSettings>();
+        }
 
         class MySettings
         {
@@ -119,6 +137,19 @@ namespace CoderMike.Autofac.EasySettings.Tests
             public string Server { get; set; }
             public int Port { get; set; }
             public bool UseSSL { get; set; }
+        }
+
+        class FooSettings
+        {
+            public string Bar { get; private set; }
+        }
+
+        class TestSettings
+        {
+            public string Unsettable
+            {
+                get { return "Calculated Value"; }
+            }
         }
     }
 }

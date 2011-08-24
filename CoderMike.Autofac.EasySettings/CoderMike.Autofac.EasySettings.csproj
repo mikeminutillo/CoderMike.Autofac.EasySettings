@@ -50,6 +50,7 @@
     <Compile Include="ISettingsReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsReaderExtensions.cs" />
+    <Compile Include="SettingsSource.cs" />
     <Compile Include="SimpleSettingsReader.cs" />
   </ItemGroup>
   <ItemGroup>
