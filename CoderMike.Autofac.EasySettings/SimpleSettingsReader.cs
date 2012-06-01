@@ -17,23 +17,11 @@ namespace CoderMike.Autofac.EasySettings
             _settingsSource = settingsSource;
         }
 
-        public object Read(Type settingsType)
-        {
-            if (settingsType == null)
-                throw new ArgumentNullException("settingsType");
-            var settingsObj = Activator.CreateInstance(settingsType);
-            var settingsPrefix = settingsType.Name.Replace("Settings", "") + ":";
-            foreach (var key in _settingsSource.AllKeys.Where(x => x.StartsWith(settingsPrefix)))
-            {
-                var propertyName = key.Substring(settingsPrefix.Length);
-                var property = settingsType.GetProperty(propertyName);
-                if (property == null)
-                    throw new Exception(String.Format("Settings class {0} has no property called {1}", settingsType.Name, propertyName));
+     
 
-                var settingValue = Convert.ChangeType(_settingsSource[key], property.PropertyType);
-                property.SetValue(settingsObj, settingValue, null);
-            }
-            return settingsObj;
+        public NameValueCollection Read()
+        {
+            return _settingsSource;
         }
     }
 }

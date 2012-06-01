@@ -16,7 +16,12 @@ namespace CoderMike.Autofac.EasySettings
             if (typedService != null && typedService.ServiceType.IsClass && typedService.ServiceType.Name.EndsWith("Settings"))
             {
                 yield return RegistrationBuilder.ForDelegate(
-                    (c, p) => c.Resolve<ISettingsReader>().Read(typedService.ServiceType)
+                    (c, p) =>
+                        {
+                            var instance = Activator.CreateInstance(typedService.ServiceType);
+                            c.Resolve<ISettingsInjector>().Inject(instance, c.Resolve<IEnumerable<ISettingsReader>>());
+                            return instance;
+                        }
                 ).As(typedService.ServiceType)
                 .CreateRegistration();
             }

@@ -47,10 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EasySettingsModule.cs" />
+    <Compile Include="ISettingsInjector.cs" />
     <Compile Include="ISettingsReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsReaderExtensions.cs" />
+    <Compile Include="SettingsInjectorExtensions.cs" />
     <Compile Include="SettingsSource.cs" />
+    <Compile Include="SimpleSettingsInjector.cs" />
     <Compile Include="SimpleSettingsReader.cs" />
   </ItemGroup>
   <ItemGroup>
