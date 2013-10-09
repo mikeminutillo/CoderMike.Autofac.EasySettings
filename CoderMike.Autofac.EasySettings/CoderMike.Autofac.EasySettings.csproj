@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EasySettingsModule.cs" />
+    <Compile Include="ISettingsProvider.cs" />
     <Compile Include="ISettingsReader.cs" />
+    <Compile Include="NameValueCollectionSettingsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsReaderExtensions.cs" />
     <Compile Include="SettingsSource.cs" />
