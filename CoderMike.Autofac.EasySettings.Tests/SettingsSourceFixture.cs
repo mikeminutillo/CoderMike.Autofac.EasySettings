@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using Autofac;
+
+using Xunit;
 
 namespace CoderMike.Autofac.EasySettings.Tests
 {
-    [TestClass]
     public class SettingsSourceFixture
     {
-        [TestMethod]
+        [Fact]
         public void SettingsSourceAllowsResolvingOfSettingClasses()
         {
             var builder = new ContainerBuilder();
@@ -23,8 +21,8 @@ namespace CoderMike.Autofac.EasySettings.Tests
             reader.Settings = fakeSettings;
 
             var resolvedSettings = container.Resolve<FakeSettings>();
-            Assert.AreSame(fakeSettings, resolvedSettings);
-            Assert.IsTrue(reader.WasCalled);
+            Assert.Same(fakeSettings, resolvedSettings);
+            Assert.True(reader.WasCalled);
         }
 
         class FakeSettings

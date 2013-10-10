@@ -1,77 +1,72 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+<<<<<<< Updated upstream:CoderMike.Autofac.EasySettings.Tests/SimpleSettingsReaderFixture.cs
+
 using System.Collections.Specialized;
+
+using Xunit;
 
 namespace CoderMike.Autofac.EasySettings.Tests
 {
-    [TestClass]
     public class SimpleSettingsReaderFixture
+=======
+using System.Collections.Specialized;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace CoderMike.Autofac.EasySettings.Tests.SettingsReading
+{
+	[TestClass]
+    public class ReadFromNameValueCollectionFixture
+>>>>>>> Stashed changes:CoderMike.Autofac.EasySettings.Tests/SettingsReading/ReadFromNameValueCollectionFixture.cs
     {
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void RequiresASettingsSource()
         {
-            var reader = new SimpleSettingsReader(null);
+<<<<<<< Updated upstream:CoderMike.Autofac.EasySettings.Tests/SimpleSettingsReaderFixture.cs
+            Assert.Throws<ArgumentNullException>(() => new SimpleSettingsReader(null));
+=======
+            var reader = new SimpleSettingsReader((NameValueCollection) null);
+>>>>>>> Stashed changes:CoderMike.Autofac.EasySettings.Tests/SettingsReading/ReadFromNameValueCollectionFixture.cs
         }
 
-        [TestMethod]
+        [Fact]
         public void CannotGetNullSettings()
         {
-            var exceptionWasThrown = false;
             var reader = new SimpleSettingsReader(new NameValueCollection());
-            try
-            {
-                reader.Read(null);
-            }
-            catch (ArgumentNullException)
-            {
-                exceptionWasThrown = true;
-            }
-            Assert.IsTrue(exceptionWasThrown, "Call should have thrown an exception");
+            Assert.Throws<ArgumentNullException>(() => reader.Read(null));
         }
 
-        [TestMethod]
+        [Fact]
         public void ShouldGetAnObjectEvenIfNoSettingsAreFound()
         {
             var reader = new SimpleSettingsReader(new NameValueCollection());
-            object settings = reader.Read(typeof(MySettings));
-            Assert.IsNotNull(settings, "Didn't get a settings object at all");
-            Assert.IsNotNull(settings as MySettings, "Didn't get a settings object of the correct type");
+            var settings = reader.Read(typeof(MySettings));
+            Assert.NotNull(settings);
+	        Assert.IsType<MySettings>(settings);
         }
 
-        [TestMethod]
+        [Fact]
         public void CanReadAStringValue()
         {
             var settingsSource = new NameValueCollection();
             settingsSource["My:Name"] = "Mike";
             var reader = new SimpleSettingsReader(settingsSource);
             var settings = reader.Read<MySettings>();
-            Assert.AreEqual("Mike", settings.Name);
+            Assert.Equal("Mike", settings.Name);
         }
 
         // TODO: Does this need a custom exception class?
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [Fact]
         public void FailsIfSettingsHaveNoCorrespondingProperty()
         {
-            SimpleSettingsReader reader = null;
-            try
-            {
-                var settingsSource = new NameValueCollection();
-                settingsSource["My:Name"] = "Mike";
-                settingsSource["My:Blog"] = "http://codermike.com";
-                reader = new SimpleSettingsReader(settingsSource);
-            }
-            catch (Exception ex)
-            {
-                Assert.Inconclusive("Unexpected Exception occurred: {0}", ex);
-            }
-            var settings = reader.Read<MySettings>();
-            Assert.Fail("Should have thrown");
+            var settingsSource = new NameValueCollection();
+            settingsSource["My:Name"] = "Mike";
+            settingsSource["My:Blog"] = "http://codermike.com";
+            var reader = new SimpleSettingsReader(settingsSource);
+            Assert.Throws<Exception>(() => reader.Read<MySettings>());
         }
 
-        [TestMethod]
+        [Fact]
         public void CanReadTypesOtherThanString()
         {
             var settingsSource = new NameValueCollection();
@@ -80,22 +75,22 @@ namespace CoderMike.Autofac.EasySettings.Tests
             settingsSource["Smtp:UseSSL"] = "True";
             var reader = new SimpleSettingsReader(settingsSource);
             var settings = reader.Read<SmtpSettings>();
-            Assert.AreEqual("fake-server", settings.Server);
-            Assert.AreEqual(12345, settings.Port);
-            Assert.IsTrue(settings.UseSSL);
+            Assert.Equal("fake-server", settings.Server);
+            Assert.Equal(12345, settings.Port);
+            Assert.True(settings.UseSSL);
         }
 
-        [TestMethod, ExpectedException(typeof(FormatException))]
+        [Fact]
         public void UnconvertableSettingResultsInFormatException()
         {
             var settingsSource = new NameValueCollection();
             settingsSource["Smtp:Port"] = "abcdef";
             var reader = new SimpleSettingsReader(settingsSource);
-            var settings = reader.Read<SmtpSettings>();
-            Assert.Fail("Should have thrown");
+            
+			Assert.Throws<FormatException>(() => reader.Read<SmtpSettings>());
         }
 
-        [TestMethod]
+        [Fact]
         public void CanReadManySettingsFromASingleSource()
         {
             var settingsSource = new NameValueCollection();
@@ -104,27 +99,28 @@ namespace CoderMike.Autofac.EasySettings.Tests
             var reader = new SimpleSettingsReader(settingsSource);
             var smtpSettings = reader.Read<SmtpSettings>();
             var mySettings = reader.Read<MySettings>();
-            Assert.AreEqual("test-server", smtpSettings.Server);
-            Assert.AreEqual("Mike", mySettings.Name);
+            Assert.Equal("test-server", smtpSettings.Server);
+            Assert.Equal("Mike", mySettings.Name);
         }
 
-        [TestMethod]
+        [Fact]
         public void CanSetPrivateProperties()
         {
             var settingsSource = new NameValueCollection();
             settingsSource["Foo:Bar"] = "Baz";
             var reader = new SimpleSettingsReader(settingsSource);
             var settings = reader.Read<FooSettings>();
-            Assert.AreEqual("Baz", settings.Bar);
+            Assert.Equal("Baz", settings.Bar);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void AttemptToSetTheUnsettableResultsInAnException()
         {
             var settingsSource = new NameValueCollection();
             settingsSource["Test:Unsettable"] = "Bang";
             var reader = new SimpleSettingsReader(settingsSource);
-            var settings = reader.Read<TestSettings>();
+            
+			Assert.Throws<ArgumentException>(() => reader.Read<TestSettings>());
         }
 
         class MySettings

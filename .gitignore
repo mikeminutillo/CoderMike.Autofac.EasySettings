@@ -2,3 +2,8 @@
 [Bb]in/
 [Oo]bj/
 TestResults/
+_ReSharper*
+packages/
+*.suo
+*.user
+*.sln.docstates
