@@ -17,6 +17,16 @@ namespace CoderMike.Autofac.EasySettings
 			_settingsProvider = new NameValueCollectionSettingsProvider(settingsSource);
 		}
 
+		public SimpleSettingsReader(ISettingsProvider settingsProvider)
+		{
+			if (settingsProvider == null)
+			{
+				throw new ArgumentNullException("settingsProvider");
+			}
+
+			_settingsProvider = settingsProvider;
+		}
+
 		public object Read(Type settingsType)
 		{
 			if (settingsType == null)

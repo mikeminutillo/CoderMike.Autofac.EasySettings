@@ -1,4 +1,5 @@
 ﻿using System;
+<<<<<<< Updated upstream:CoderMike.Autofac.EasySettings.Tests/SimpleSettingsReaderFixture.cs
 
 using System.Collections.Specialized;
 
@@ -7,11 +8,25 @@ using Xunit;
 namespace CoderMike.Autofac.EasySettings.Tests
 {
     public class SimpleSettingsReaderFixture
+=======
+using System.Collections.Specialized;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace CoderMike.Autofac.EasySettings.Tests.SettingsReading
+{
+	[TestClass]
+    public class ReadFromNameValueCollectionFixture
+>>>>>>> Stashed changes:CoderMike.Autofac.EasySettings.Tests/SettingsReading/ReadFromNameValueCollectionFixture.cs
     {
         [Fact]
         public void RequiresASettingsSource()
         {
+<<<<<<< Updated upstream:CoderMike.Autofac.EasySettings.Tests/SimpleSettingsReaderFixture.cs
             Assert.Throws<ArgumentNullException>(() => new SimpleSettingsReader(null));
+=======
+            var reader = new SimpleSettingsReader((NameValueCollection) null);
+>>>>>>> Stashed changes:CoderMike.Autofac.EasySettings.Tests/SettingsReading/ReadFromNameValueCollectionFixture.cs
         }
 
         [Fact]
