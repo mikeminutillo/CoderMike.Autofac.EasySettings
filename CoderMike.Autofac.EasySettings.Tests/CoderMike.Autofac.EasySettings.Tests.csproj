@@ -87,6 +87,7 @@
     <Content Include="MultipleEntries.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="UnsupportedType.txt" />
     <None Include="MultipleEntriesJson">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

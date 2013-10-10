@@ -2,11 +2,60 @@
 using System.Xml;
 
 using Xunit;
+using Xunit.Extensions;
 
 namespace CoderMike.Autofac.EasySettings.Tests.SettingsReading
 {
 	public class ReadFromLoadedFileFixture
 	{
+		[Fact]
+		public void CanLoadValuesFromAutodetectedJsonFile()
+		{
+			var reader = new SimpleSettingsReader("MultipleEntries.json");
+
+			var testSettings = reader.Read<FirstSettings>();
+
+			Assert.NotNull(testSettings);
+		}
+
+		[Fact]
+		public void WillLoadConfigurationValuesFromAutodetectedJsonFile()
+		{
+			var reader = new SimpleSettingsReader("MultipleEntries.json");
+
+			var testSettings = reader.Read<FirstSettings>();
+
+			Assert.Equal("blah", testSettings.Value);
+		}
+
+		[Fact]
+		public void CanLoadValuesFromAutodetectedXmlFile()
+		{
+			var reader = new SimpleSettingsReader("MultipleEntries.xml");
+
+			var testSettings = reader.Read<FirstSettings>();
+
+			Assert.NotNull(testSettings);
+		}
+
+		[Fact]
+		public void WillLoadConfigurationValuesFromAutodetectedXmlFile()
+		{
+			var reader = new SimpleSettingsReader("MultipleEntries.xml");
+
+			var testSettings = reader.Read<FirstSettings>();
+
+			Assert.Equal("etc", testSettings.Value);
+		}
+
+		[Theory]
+		[InlineData("MultipleEntriesXml")]
+		[InlineData("UnsupportedType.txt")]
+		public void WillThrowArgumentExceptionIfCannotAutodetectFileType(string filePath)
+		{
+			Assert.Throws<ArgumentException>(() => new SimpleSettingsReader(filePath));
+		}
+
 		[Fact]
 		public void CanLoadValuesFromFileSpecifiedAsJson()
 		{
