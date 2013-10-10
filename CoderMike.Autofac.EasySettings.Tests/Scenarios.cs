@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Autofac;
 using System.Configuration;
+
+using Autofac;
+
+using Xunit;
 
 namespace CoderMike.Autofac.EasySettings.Tests
 {
-    [TestClass]
     public class Scenarios
     {
-        [TestMethod]
+        [Fact]
         public void TestMethod1()
         {
             var builder = new ContainerBuilder();
@@ -25,12 +23,12 @@ namespace CoderMike.Autofac.EasySettings.Tests
             var akismetSettings = container.Resolve<AkismetSettings>();
             var blogSettings = container.Resolve<BlogSettings>();
 
-            Assert.AreEqual(2345, component.EmailSettings.Port);
-            Assert.IsTrue(component.EmailSettings.Ssl);
-            Assert.AreEqual("MyUserName", component.EmailSettings.Username);
-            Assert.AreEqual("SomeKey", component.AkismetSettings.ApiKey);
-            Assert.IsTrue(component.BlogSettings.EnableComments);
-            Assert.IsTrue(component.BlogSettings.EnableHistory);
+            Assert.Equal(2345, component.EmailSettings.Port);
+            Assert.True(component.EmailSettings.Ssl);
+            Assert.Equal("MyUserName", component.EmailSettings.Username);
+            Assert.Equal("SomeKey", component.AkismetSettings.ApiKey);
+            Assert.True(component.BlogSettings.EnableComments);
+            Assert.True(component.BlogSettings.EnableHistory);
         }
 
         class FakeComponent

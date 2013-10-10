@@ -1,44 +1,42 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Autofac;
 using System.Collections.Specialized;
+using System.Linq;
+
+using Autofac;
+
+using Xunit;
 
 namespace CoderMike.Autofac.EasySettings.Tests
 {
-    [TestClass]
-    public class EasySettingsModuleFixture
-    {
-        [TestMethod]
-        public void ModuleInstallsSimpleSettingsReaderByDefault()
-        {
-            var settings = new NameValueCollection();
-            var module = new EasySettingsModule(settings);
+	public class EasySettingsModuleFixture
+	{
+		[Fact]
+		public void ModuleInstallsSimpleSettingsReaderByDefault()
+		{
+			var settings = new NameValueCollection();
+			var module = new EasySettingsModule(settings);
 
-            var builder = new ContainerBuilder();
-            builder.RegisterModule(module);
+			var builder = new ContainerBuilder();
+			builder.RegisterModule(module);
 
-            var container = builder.Build();
-            var reader = container.Resolve<ISettingsReader>();
+			var container = builder.Build();
+			var reader = container.Resolve<ISettingsReader>();
 
-            Assert.IsNotNull(reader);
-            Assert.IsTrue(reader is SimpleSettingsReader);
-        }
+			Assert.NotNull(reader);
+			Assert.True(reader is SimpleSettingsReader);
+		}
 
+		[Fact]
+		public void ModuleInstallsSettingsSource()
+		{
+			var settings = new NameValueCollection();
+			var module = new EasySettingsModule(settings);
 
-        [TestMethod]
-        public void ModuleInstallsSettingsSource()
-        {
-            var settings = new NameValueCollection();
-            var module = new EasySettingsModule(settings);
+			var builder = new ContainerBuilder();
+			builder.RegisterModule(module);
 
-            var builder = new ContainerBuilder();
-            builder.RegisterModule(module);
-
-            var container = builder.Build();
-            Assert.IsTrue(container.ComponentRegistry.Sources.OfType<SettingsSource>().Any());
-        }
-    }
+			var container = builder.Build();
+			Assert.True(container.ComponentRegistry.Sources.OfType<SettingsSource>().Any());
+		}
+	}
 }
