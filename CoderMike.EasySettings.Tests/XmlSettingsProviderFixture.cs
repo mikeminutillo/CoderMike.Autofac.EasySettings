@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
 
+using CoderMike.Autofac.EasySettings;
+
 using Xunit;
 using Xunit.Extensions;
 
-namespace CoderMike.Autofac.EasySettings.Tests
+namespace CoderMike.EasySettings.Tests
 {
 	public class XmlSettingsProviderFixture
 	{

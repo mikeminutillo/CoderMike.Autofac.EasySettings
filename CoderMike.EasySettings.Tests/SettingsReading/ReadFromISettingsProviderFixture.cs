@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 
+using CoderMike.Autofac.EasySettings;
+
 using Xunit;
 
-namespace CoderMike.Autofac.EasySettings.Tests.SettingsReading
+namespace CoderMike.EasySettings.Tests.SettingsReading
 {
 	public class ReadFromISettingsProviderFixture
 	{

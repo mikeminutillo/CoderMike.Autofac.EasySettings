@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 
-namespace CoderMike.Autofac.EasySettings
+namespace CoderMike.EasySettings
 {
 	public class SimpleSettingsReader : ISettingsReader
 	{

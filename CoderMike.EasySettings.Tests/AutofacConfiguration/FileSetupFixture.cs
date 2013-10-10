@@ -1,31 +1,21 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 using Autofac;
 
-using CoderMike.Autofac.EasySettings.Tests.SettingsReading;
+using CoderMike.Autofac.EasySettings;
+using CoderMike.EasySettings.Tests.SettingsReading;
 
 using Xunit;
 
-namespace CoderMike.Autofac.EasySettings.Tests.AutofacConfiguration
+namespace CoderMike.EasySettings.Tests.AutofacConfiguration
 {
-	public class DirectProviderSetupFixture
+	public class FileSetupFixture
 	{
-		private readonly TestSettingsProvider _provider;
-
-		public DirectProviderSetupFixture()
-		{
-			_provider = new TestSettingsProvider(new Dictionary<string, string>
-			{
-				{"First:Value", "things"}
-			});
-		}
-
 		[Fact]
 		public void ModuleInstallsSimpleSettingsReaderByDefault()
 		{
-			var module = new EasySettingsModule(_provider);
+			var module = new EasySettingsModule("MultipleEntries.json");
 
 			var builder = new ContainerBuilder();
 			builder.RegisterModule(module);
@@ -40,7 +30,7 @@ namespace CoderMike.Autofac.EasySettings.Tests.AutofacConfiguration
 		[Fact]
 		public void ModuleInstallsSettingsSource()
 		{
-			var module = new EasySettingsModule(_provider);
+			var module = new EasySettingsModule("MultipleEntries.json");
 
 			var builder = new ContainerBuilder();
 			builder.RegisterModule(module);
@@ -52,7 +42,7 @@ namespace CoderMike.Autofac.EasySettings.Tests.AutofacConfiguration
 		[Fact]
 		public void ConfigurationValuesLoadedFromSuppliedCollection()
 		{
-			var module = new EasySettingsModule(_provider);
+			var module = new EasySettingsModule("MultipleEntries.json");
 
 			var builder = new ContainerBuilder();
 			builder.RegisterModule(module);
@@ -62,7 +52,7 @@ namespace CoderMike.Autofac.EasySettings.Tests.AutofacConfiguration
 
 			var instance = reader.Read<FirstSettings>();
 
-			Assert.Equal("things", instance.Value);
+			Assert.Equal("blah", instance.Value);
 		}
 	}
 }

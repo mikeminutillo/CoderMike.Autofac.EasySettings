@@ -4,7 +4,7 @@ using System.IO;
 
 using Newtonsoft.Json;
 
-namespace CoderMike.Autofac.EasySettings
+namespace CoderMike.EasySettings
 {
 	public class JsonSettingsProvider : ISettingsProvider
 	{

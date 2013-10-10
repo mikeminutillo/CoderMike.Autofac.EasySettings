@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CoderMike.Autofac.EasySettings
+namespace CoderMike.EasySettings
 {
 	public enum SettingFileType
 	{

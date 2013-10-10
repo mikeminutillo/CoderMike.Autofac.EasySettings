@@ -1,22 +1,32 @@
-﻿using System;
-using System.Collections.Specialized;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Autofac;
 
-using CoderMike.Autofac.EasySettings.Tests.SettingsReading;
+using CoderMike.Autofac.EasySettings;
+using CoderMike.EasySettings.Tests.SettingsReading;
 
 using Xunit;
 
-namespace CoderMike.Autofac.EasySettings.Tests.AutofacConfiguration
+namespace CoderMike.EasySettings.Tests.AutofacConfiguration
 {
-	public class NameValueCollectionSetupFixture
+	public class DirectProviderSetupFixture
 	{
+		private readonly TestSettingsProvider _provider;
+
+		public DirectProviderSetupFixture()
+		{
+			_provider = new TestSettingsProvider(new Dictionary<string, string>
+			{
+				{"First:Value", "things"}
+			});
+		}
+
 		[Fact]
 		public void ModuleInstallsSimpleSettingsReaderByDefault()
 		{
-			var settings = new NameValueCollection();
-			var module = new EasySettingsModule(settings);
+			var module = new EasySettingsModule(_provider);
 
 			var builder = new ContainerBuilder();
 			builder.RegisterModule(module);
@@ -31,8 +41,7 @@ namespace CoderMike.Autofac.EasySettings.Tests.AutofacConfiguration
 		[Fact]
 		public void ModuleInstallsSettingsSource()
 		{
-			var settings = new NameValueCollection();
-			var module = new EasySettingsModule(settings);
+			var module = new EasySettingsModule(_provider);
 
 			var builder = new ContainerBuilder();
 			builder.RegisterModule(module);
@@ -44,11 +53,7 @@ namespace CoderMike.Autofac.EasySettings.Tests.AutofacConfiguration
 		[Fact]
 		public void ConfigurationValuesLoadedFromSuppliedCollection()
 		{
-			var settings = new NameValueCollection
-			{
-				{ "First:Value", "something"}
-			};
-			var module = new EasySettingsModule(settings);
+			var module = new EasySettingsModule(_provider);
 
 			var builder = new ContainerBuilder();
 			builder.RegisterModule(module);
@@ -58,7 +63,7 @@ namespace CoderMike.Autofac.EasySettings.Tests.AutofacConfiguration
 
 			var instance = reader.Read<FirstSettings>();
 
-			Assert.Equal("something", instance.Value);
+			Assert.Equal("things", instance.Value);
 		}
 	}
 }

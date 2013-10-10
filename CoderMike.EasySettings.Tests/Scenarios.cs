@@ -3,9 +3,11 @@ using System.Configuration;
 
 using Autofac;
 
+using CoderMike.Autofac.EasySettings;
+
 using Xunit;
 
-namespace CoderMike.Autofac.EasySettings.Tests
+namespace CoderMike.EasySettings.Tests
 {
     public class Scenarios
     {

@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>CoderMike.Autofac.EasySettings</id>
-    <version>1.0</version>
-    <title>CoderMike.Autofac.EasySettings</title>
-    <authors>CoderMike</authors>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
     <owners>Mike Minutillo</owners>
     <projectUrl>http://codermike.com/convention-config-for-autofac</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Constructing settings classes that get read out of AppSettings on demand</description>
+    <description>$description$</description>
     <summary />
     <dependencies>
-      <dependency id="Autofac" version="3.1.1" />
+      <dependency id="Newtonsoft.Json" version="5.0.6" />
     </dependencies>
   </metadata>
 </package>

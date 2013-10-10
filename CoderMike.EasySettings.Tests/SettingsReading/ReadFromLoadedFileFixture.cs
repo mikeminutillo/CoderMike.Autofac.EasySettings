@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Xml;
 
+using CoderMike.Autofac.EasySettings;
+
 using Xunit;
 using Xunit.Extensions;
 
-namespace CoderMike.Autofac.EasySettings.Tests.SettingsReading
+namespace CoderMike.EasySettings.Tests.SettingsReading
 {
 	public class ReadFromLoadedFileFixture
 	{

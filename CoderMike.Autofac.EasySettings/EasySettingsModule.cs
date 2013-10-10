@@ -3,6 +3,8 @@ using System.Collections.Specialized;
 
 using Autofac;
 
+using CoderMike.EasySettings;
+
 namespace CoderMike.Autofac.EasySettings
 {
 	public class EasySettingsModule : Module

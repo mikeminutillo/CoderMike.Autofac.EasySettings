@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CoderMike.Autofac.EasySettings
+namespace CoderMike.EasySettings
 {
 	public interface ISettingsProvider
 	{

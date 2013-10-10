@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace CoderMike.Autofac.EasySettings
+namespace CoderMike.EasySettings
 {
 	public class XmlSettingsProvider : ISettingsProvider
 	{
