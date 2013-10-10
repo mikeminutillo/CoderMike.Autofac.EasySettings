@@ -54,6 +54,7 @@
     <Compile Include="JsonSettingsProvider.cs" />
     <Compile Include="NameValueCollectionSettingsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingFileType.cs" />
     <Compile Include="SettingsReaderExtensions.cs" />
     <Compile Include="SettingsSource.cs" />
     <Compile Include="SimpleSettingsReader.cs" />

@@ -52,7 +52,7 @@ namespace CoderMike.Autofac.EasySettings.Tests
 		}
 
 		[Theory]
-		[InlineData("First:Value", "blah")]
+		[InlineData("First:Value", "etc")]
 		[InlineData("Second:Value", "4")]
 		[InlineData("Third:Value", "something")]
 		public void MultipleEntriesXmlHasExpectedValue(string key, string value)

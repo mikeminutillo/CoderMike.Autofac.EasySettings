@@ -27,6 +27,23 @@ namespace CoderMike.Autofac.EasySettings
 			_settingsProvider = settingsProvider;
 		}
 
+		public SimpleSettingsReader(string filePath, SettingFileType settingFileType)
+		{
+			switch (settingFileType)
+			{
+				case SettingFileType.Json:
+					_settingsProvider = new JsonSettingsProvider(filePath);
+					break;
+				case SettingFileType.Xml:
+					_settingsProvider = new XmlSettingsProvider(filePath);
+					break;
+				default:
+					throw new ArgumentOutOfRangeException("settingFileType",
+						settingFileType,
+						"Only JSON and XML file types are supported");
+			}
+		}
+
 		public object Read(Type settingsType)
 		{
 			if (settingsType == null)
