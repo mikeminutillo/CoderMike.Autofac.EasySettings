@@ -57,7 +57,9 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EasySettingsModuleFixture.cs" />
+    <Compile Include="AutofacConfiguration\DirectProviderSetupFixture.cs" />
+    <Compile Include="AutofacConfiguration\FileSetupFixture.cs" />
+    <Compile Include="AutofacConfiguration\NameValueCollectionSetupFixture.cs" />
     <Compile Include="JsonSettingsProviderFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenarios.cs" />
