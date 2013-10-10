@@ -17,7 +17,7 @@ namespace CoderMike.Autofac.EasySettings
 			{
 				throw new ArgumentException("The specified file could not be loaded.");
 			}
-			_values = document.Root.Elements().ToDictionary(element => element.Name.LocalName,
+			_values = document.Root.Elements().ToDictionary(element => element.Attribute("key").Value,
 				element => element.Value);
 		}
 

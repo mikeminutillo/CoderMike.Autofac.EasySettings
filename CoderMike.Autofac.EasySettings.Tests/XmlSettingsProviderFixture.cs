@@ -21,7 +21,7 @@ namespace CoderMike.Autofac.EasySettings.Tests
 		{
 			var provider = new XmlSettingsProvider("SingleEntry.xml");
 
-			Assert.Contains("TestValue", provider.AllKeys);
+			Assert.Contains("Test:Value", provider.AllKeys);
 		}
 
 		[Fact]
@@ -29,7 +29,7 @@ namespace CoderMike.Autofac.EasySettings.Tests
 		{
 			var provider = new XmlSettingsProvider("SingleEntry.xml");
 
-			Assert.Equal("5", provider["TestValue"]);
+			Assert.Equal("5", provider["Test:Value"]);
 		}
 
 		[Fact]
@@ -41,9 +41,9 @@ namespace CoderMike.Autofac.EasySettings.Tests
 		}
 
 		[Theory]
-		[InlineData("FirstValue")]
-		[InlineData("SecondValue")]
-		[InlineData("ThirdValue")]
+		[InlineData("First:Value")]
+		[InlineData("Second:Value")]
+		[InlineData("Third:Value")]
 		public void SingleEntriesXmlHasExpectedKeys(string key)
 		{
 			var provider = new XmlSettingsProvider("MultipleEntries.xml");
@@ -51,12 +51,15 @@ namespace CoderMike.Autofac.EasySettings.Tests
 			Assert.Contains(key, provider.AllKeys);
 		}
 
-		[Fact]
-		public void MultipleEntriesXmlHasExpectedValue()
+		[Theory]
+		[InlineData("First:Value", "blah")]
+		[InlineData("Second:Value", "4")]
+		[InlineData("Third:Value", "something")]
+		public void MultipleEntriesXmlHasExpectedValue(string key, string value)
 		{
 			var provider = new XmlSettingsProvider("MultipleEntries.xml");
 
-			Assert.Equal("something", provider["ThirdValue"]);
+			Assert.Equal(value, provider[key]);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
-	<FirstValue>blah</FirstValue>
-	<SecondValue>4</SecondValue>
-	<ThirdValue>something</ThirdValue>
+	<item key="First:Value">blah</item>
+	<item key="Second:Value">4</item>
+	<item key="Third:Value">something</item>
 </configuration>
