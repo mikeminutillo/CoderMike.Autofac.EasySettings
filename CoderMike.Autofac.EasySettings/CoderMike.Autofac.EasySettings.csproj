@@ -57,6 +57,7 @@
     <Compile Include="SettingsReaderExtensions.cs" />
     <Compile Include="SettingsSource.cs" />
     <Compile Include="SimpleSettingsReader.cs" />
+    <Compile Include="XmlSettingsProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

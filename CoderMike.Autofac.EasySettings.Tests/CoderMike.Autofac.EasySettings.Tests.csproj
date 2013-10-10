@@ -62,6 +62,7 @@
     <Compile Include="Scenarios.cs" />
     <Compile Include="SettingsSourceFixture.cs" />
     <Compile Include="SimpleSettingsReaderFixture.cs" />
+    <Compile Include="XmlSettingsProviderFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CoderMike.Autofac.EasySettings\CoderMike.Autofac.EasySettings.csproj">
@@ -78,6 +79,14 @@
     <None Include="SingleEntry.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MultipleEntries.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SingleEntry.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

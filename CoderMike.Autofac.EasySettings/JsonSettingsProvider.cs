@@ -17,10 +17,7 @@ namespace CoderMike.Autofac.EasySettings
 
 		public IEnumerable<string> AllKeys
 		{
-			get
-			{
-				return _values.Keys;
-			}
+			get { return _values.Keys; }
 		}
 
 		public string this[string key]
