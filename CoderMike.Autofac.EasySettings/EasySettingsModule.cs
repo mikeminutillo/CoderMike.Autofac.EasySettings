@@ -1,28 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Autofac;
 using System.Collections.Specialized;
+
+using Autofac;
+
+using CoderMike.EasySettings;
 
 namespace CoderMike.Autofac.EasySettings
 {
-    public class EasySettingsModule : Module
-    {
-        private readonly NameValueCollection _settings;
+	public class EasySettingsModule : Module
+	{
+		private readonly Action<ContainerBuilder> _registrationAction;
 
-        public EasySettingsModule(NameValueCollection settings)
-        {
-            _settings = settings;
-        }
+		public EasySettingsModule(NameValueCollection settings)
+		{
+			if (settings == null)
+			{
+				throw new ArgumentNullException("settings");
+			}
 
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterType<SimpleSettingsReader>()
-                .As<ISettingsReader>()
-                .WithParameter(TypedParameter.From(_settings));
+			_registrationAction = builder => builder.RegisterType<SimpleSettingsReader>()
+				.As<ISettingsReader>()
+				.WithParameter(TypedParameter.From(settings));
+		}
 
-            builder.RegisterSource(new SettingsSource());
-        }
-    }
+		public EasySettingsModule(string filePath)
+		{
+			if (string.IsNullOrWhiteSpace(filePath))
+			{
+				throw new ArgumentException("A configuration file must be supplied.",
+					"filePath");
+			}
+			_registrationAction = builder => builder.RegisterType<SimpleSettingsReader>()
+				.As<ISettingsReader>()
+				.WithParameter(TypedParameter.From(filePath));
+		}
+
+		public EasySettingsModule(ISettingsProvider settingsProvider)
+		{
+			if (settingsProvider == null)
+			{
+				throw new ArgumentNullException("settingsProvider");
+			}
+
+			_registrationAction = builder => builder.RegisterType<SimpleSettingsReader>()
+				.As<ISettingsReader>()
+				.WithParameter(TypedParameter.From(settingsProvider));
+		}
+
+		protected override void Load(ContainerBuilder builder)
+		{
+			_registrationAction(builder);
+
+			builder.RegisterSource(new SettingsSource());
+		}
+	}
 }
