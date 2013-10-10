@@ -1,62 +1,62 @@
 ﻿using System;
 using System.Linq;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
+using Xunit.Extensions;
 
 namespace CoderMike.Autofac.EasySettings.Tests
 {
-	[TestClass]
-	[DeploymentItem("SingleEntry.xml")]
-	[DeploymentItem("MultipleEntries.xml")]
 	public class XmlSettingsProviderFixture
 	{
-		[TestMethod]
+		[Fact]
 		public void SingleEntryXmlHasExpectedNumberOfKeys()
 		{
 			var provider = new XmlSettingsProvider("SingleEntry.xml");
 
-			Assert.AreEqual(1, provider.AllKeys.Count());
+			Assert.Equal(1, provider.AllKeys.Count());
 		}
 
-		[TestMethod]
+		[Fact]
 		public void SingleEntryXmlHasExpectedKey()
 		{
 			var provider = new XmlSettingsProvider("SingleEntry.xml");
 
-			CollectionAssert.Contains(provider.AllKeys.ToList(), "TestValue");
+			Assert.Contains("TestValue", provider.AllKeys);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void SingleEntryXmlHasExpectedValue()
 		{
 			var provider = new XmlSettingsProvider("SingleEntry.xml");
 
-			Assert.AreEqual("5", provider["TestValue"]);
+			Assert.Equal("5", provider["TestValue"]);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void MultipleEntriesXmlHasExpectedNumberOfKeys()
 		{
 			var provider = new XmlSettingsProvider("MultipleEntries.xml");
 
-			Assert.AreEqual(3, provider.AllKeys.Count());
+			Assert.Equal(3, provider.AllKeys.Count());
 		}
 
-		[TestMethod]
-		public void SingleEntriesXmlHasExpectedKeys()
+		[Theory]
+		[InlineData("FirstValue")]
+		[InlineData("SecondValue")]
+		[InlineData("ThirdValue")]
+		public void SingleEntriesXmlHasExpectedKeys(string key)
 		{
 			var provider = new XmlSettingsProvider("MultipleEntries.xml");
 
-			CollectionAssert.AreEquivalent(provider.AllKeys.ToList(),
-				new[] {"FirstValue", "SecondValue", "ThirdValue"});
+			Assert.Contains(key, provider.AllKeys);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void MultipleEntriesXmlHasExpectedValue()
 		{
 			var provider = new XmlSettingsProvider("MultipleEntries.xml");
 
-			Assert.AreEqual("something", provider["ThirdValue"]);
+			Assert.Equal("something", provider["ThirdValue"]);
 		}
 	}
 }
