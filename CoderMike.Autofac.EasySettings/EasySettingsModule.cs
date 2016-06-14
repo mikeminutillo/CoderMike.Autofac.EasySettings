@@ -11,6 +11,11 @@ namespace CoderMike.Autofac.EasySettings
     {
         private readonly NameValueCollection _settings;
 
+        public EasySettingsModule()
+        {
+            
+        }
+
         public EasySettingsModule(NameValueCollection settings)
         {
             _settings = settings;
@@ -18,9 +23,16 @@ namespace CoderMike.Autofac.EasySettings
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<SimpleSettingsReader>()
-                .As<ISettingsReader>()
-                .WithParameter(TypedParameter.From(_settings));
+            builder.RegisterType<SimpleSettingsInjector>()
+                   .As<ISettingsInjector>()
+                   .SingleInstance();
+
+            if (_settings != null)
+            {
+                builder.RegisterType<SimpleSettingsReader>()
+                       .As<ISettingsReader>()
+                       .WithParameter(TypedParameter.From(_settings));
+            }
 
             builder.RegisterSource(new SettingsSource());
         }

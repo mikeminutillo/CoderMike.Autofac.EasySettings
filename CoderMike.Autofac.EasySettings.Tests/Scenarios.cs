@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,23 @@ namespace CoderMike.Autofac.EasySettings.Tests
             Assert.IsTrue(component.BlogSettings.EnableHistory);
         }
 
+        [TestMethod]
+        public void MultipleSettingsReaders()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterModule(new EasySettingsModule(ConfigurationManager.AppSettings));
+            //extra settings provider
+            var secretItems = new NameValueCollection {{"Blog:SuperSecretItem", "SuperSecretValue"}};
+            builder.RegisterInstance(new SimpleSettingsReader(secretItems)).As<ISettingsReader>();
+
+            builder.RegisterType<FakeComponent>();
+
+            var container = builder.Build();
+            var component = container.Resolve<FakeComponent>();
+
+            Assert.AreEqual("SuperSecretValue", component.BlogSettings.SuperSecretItem);
+        }
+
         class FakeComponent
         {
             public EmailSettings EmailSettings { get; private set; }
@@ -63,6 +81,7 @@ namespace CoderMike.Autofac.EasySettings.Tests
         {
             public bool EnableComments { get; private set; }
             public bool EnableHistory { get; private set; }
+            public string SuperSecretItem { get; private set; }
         }
     }
 }
